@@ -5,6 +5,7 @@ resource "google_monitoring_dashboard" "new_dashboard" {
     mosaicLayout    = {
       columns = 48
       tiles   = [
+
         {
           widget = {
             title   = "VM Instance - CPU utilization [MEAN]"
@@ -14,6 +15,7 @@ resource "google_monitoring_dashboard" "new_dashboard" {
               }
               dataSets = [
                 {
+
                   minAlignmentPeriod = "60s"
                   plotType           = "LINE"
                   targetAxis         = "Y1"
