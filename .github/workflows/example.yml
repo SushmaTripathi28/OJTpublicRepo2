@@ -1,0 +1,15 @@
+name: example-cron
+'on':
+  schedule:
+    - cron: 20 3 * * *
+  workflow_dispatch: null
+jobs:
+  nightly:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: "Cypress nightly tests \U0001F303"
+        uses: ./
+        with:
+          working-directory: examples/basic
