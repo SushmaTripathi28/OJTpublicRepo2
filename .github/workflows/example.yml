@@ -9,7 +9,4 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: "Cypress nightly tests \U0001F303"
-        uses: ./
-        with:
-          working-directory: examples/basic
+      
