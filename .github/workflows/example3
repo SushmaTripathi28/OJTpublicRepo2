@@ -1,6 +1,6 @@
 name: CI Pipeline
-on: [push]
-
+'on':
+  - push
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -8,8 +8,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Run tests
-        run: echo "Running tests on ${{ runner.os }} by ${{ github.actor }}"
-
+        run: 'echo "Running tests on ${{ runner.os }} by ${{ github.actor }}"'
   build:
     runs-on: ubuntu-latest
     needs: test
@@ -17,16 +16,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Build project
-        run: echo "Building project for ${{ github.repository }} branch ${{ github.ref }}"
+        run: >-
+          echo "Building project for ${{ github.repository }} branch ${{
+          github.ref }}"
       - name: Save build output
         run: echo "Build result" > result.txt
         id: save_output
       - name: Set output
-        run: echo "::set-output name=result::$(cat result.txt)"
-
+        run: 'echo "::set-output name=result::$(cat result.txt)"'
   deploy:
     runs-on: ubuntu-latest
     needs: build
     steps:
       - name: Deploy project
-        run: echo "Deploying with result ${{ needs.build.outputs.result }}"
+        run: 'echo "Deploying with result ${{ needs.build.outputs.result }}"'
